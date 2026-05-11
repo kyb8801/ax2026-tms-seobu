@@ -1,0 +1,58 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Virtual envs
+venv/
+env/
+.venv/
+.env
+
+# Data (절대 커밋 금지 — 한국서부발전 TMS 원본 데이터)
+data/raw/
+data/tms/
+data/airkorea/
+data/kma/
+data/kpx/
+*.csv
+*.parquet
+*.pkl
+*.h5
+
+# 단, 가상 데이터 / 결과 시각화는 허용
+!data/synthetic/
+!data/results/
+
+# Notebooks (출력 제거된 버전만 커밋)
+notebooks/.ipynb_checkpoints/
+*.ipynb_checkpoints/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Logs
+*.log
+logs/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# 모델 가중치 (대용량)
+models/*.pt
+models/*.pth
+models/*.ckpt
+
+# OS
+Thumbs.db
+desktop.ini

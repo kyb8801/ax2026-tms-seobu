@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install numpy scipy scikit-learn pytest pytest-cov
+
+      - name: Module self-tests (no PyTorch needed)
+        run: |
+          python src/innovation/gum_uncertainty.py
+          python src/innovation/measurement_aware_loss.py
+          python src/innovation/calibration_drift.py
+          python src/innovation/operator_trust.py
+          python src/core/lstm_autoencoder.py
+          python src/core/etl_4source.py
+          python src/core/isolation_forest_gum.py
+          python src/core/shap_xai.py
+          python src/extension/cbam_impact.py
+
+      - name: End-to-end integration test
+        run: |
+          python tests/test_e2e_pipeline.py
+
+      - name: Pytest
+        run: |
+          pytest tests/ -v --cov=src --cov-report=term-missing
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install ruff black
+      - run: ruff check src/ tests/
+      - run: black --check src/ tests/
