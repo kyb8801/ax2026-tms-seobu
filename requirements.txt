@@ -1,56 +1,8 @@
-# 2026 AX 아이디어 경진대회 — 한국서부발전 TMS 과제
-# Python 3.10+
-
-# === Core scientific stack ===
+﻿# Streamlit Cloud demo (lightweight, ~1min build)
+streamlit>=1.30
 numpy>=1.26
 pandas>=2.1
 scipy>=1.11
-
-# === Machine Learning ===
-scikit-learn>=1.4
-torch>=2.1                  # LSTM-Autoencoder, GUM-weighted loss
-torchvision>=0.16
-
-# === Anomaly Detection / Time Series ===
-xgboost>=2.0                # 예비 — 베이스라인 비교
-lightgbm>=4.1               # 예비 — 베이스라인 비교
-
-# === XAI ===
-shap>=0.44
-
-# === Data ingestion ===
-requests>=2.31              # 에어코리아·기상청 API
-pyhwp>=0.1                  # 한컴 HWPX 파일 읽기 (지정과제 명세서)
-beautifulsoup4>=4.12        # 공공데이터포털 스크래핑 보조
-
-# === Visualization ===
 matplotlib>=3.8
+plotly>=5.18
 seaborn>=0.13
-plotly>=5.18                # 인터랙티브 대시보드
-
-# === Streamlit deployment ===
-streamlit>=1.30
-streamlit-plotly-events>=0.0.6
-
-# === Time / data utilities ===
-python-dateutil>=2.8
-pytz>=2024.1
-holidays>=0.42              # 공휴일 (이상사용 패턴 분석)
-
-# === Geo / Plume modeling ===
-geopy>=2.4                  # Haversine 보조 (이미 numpy로 구현했으나 검증용)
-
-# === Statistical / drift detection ===
-statsmodels>=0.14
-ruptures>=1.1               # 변화점 검출 (Page-Hinkley 보완)
-
-# === Notebook ===
-jupyter>=1.0
-ipykernel>=6.27
-ipywidgets>=8.1
-
-# === Code quality ===
-black>=23.12
-ruff>=0.1
-pytest>=7.4
-pytest-cov>=4.1
